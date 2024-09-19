@@ -2,8 +2,10 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/dbConnect.js";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 // Routes
+import authRoutes from "./routes/Auth.route.js";
 import blogRoutes from "./routes/Blog.route.js";
 import aboutRoutes from "./routes/About.route.js";
 import employeeRoutes from "./routes/Employee.route.js";
@@ -24,11 +26,18 @@ connectDB();
 const app = express();
 
 // middlewares
+app.use(cookieParser());
 app.use(express.json());
-app.use(cors());
+app.use(
+    cors({
+        origin: process.env.FRONTEND_URL,
+        credentials: true,
+    })
+);
 app.use("/uploads", express.static("uploads"));
 
 // api routes
+app.use("/api/auth", authRoutes);
 app.use("/api/blogs", blogRoutes);
 app.use("/api/about", aboutRoutes);
 app.use("/api/employee", employeeRoutes);
