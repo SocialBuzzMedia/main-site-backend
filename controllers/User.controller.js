@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/User.model.js";
 
-//
+//Checking the authentication
 export const checkAuth = (req, res) => {
     res.status(200).json({ message: "User is Authenticated" });
 };
