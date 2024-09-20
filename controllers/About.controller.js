@@ -5,12 +5,22 @@ import fs from "fs";
 // Function to Create New Service
 export const createAbout = async (req, res) => {
     try {
-        const { title, description } = req.body;
+        const { title, description, category } = req.body;
         const image = req.file ? `/uploads/about/${req.file.filename}` : null;
 
-        const newAbout = new AboutUs({ title, description, image });
+        const newAbout = new AboutUs({ title, description, category, image });
         await newAbout.save();
         res.status(201).json(newAbout);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+// Show the services that has category show
+export const getVisibleAbout = async (req, res) => {
+    try {
+        const about = await AboutUs.find({ category: "Show" });
+        res.status(200).json(about);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -30,7 +40,7 @@ export const getAbout = async (req, res) => {
 export const updateAbout = async (req, res) => {
     try {
         const { id } = req.params;
-        const { title, description } = req.body;
+        const { title, description, category } = req.body;
         const aboutUs = await AboutUs.findById(id);
 
         if (!aboutUs) {
@@ -39,6 +49,7 @@ export const updateAbout = async (req, res) => {
 
         aboutUs.title = title || aboutUs.title;
         aboutUs.description = description || aboutUs.description;
+        aboutUs.category = category || aboutUs.category;
 
         if (req.file) {
             // delete old image
