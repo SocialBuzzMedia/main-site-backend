@@ -86,7 +86,7 @@ export const deleteEmployee = async (req, res) => {
         }
 
         await employee.deleteOne();
-        res.status(200).json({ message: "Blog Deleted Successfully" });
+        res.status(200).json({ message: "Employee Deleted Successfully" });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
