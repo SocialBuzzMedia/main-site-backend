@@ -1,24 +1,24 @@
 import express from "express";
-import upload from "../middleware/visionmission.uploads.middleware.js";
+import upload from "../middleware/visionMission.uploads.middleware.js";
 import {
     createSection,
     deleteSection,
-    getAllSections,
+    getSection,
     updateSection,
 } from "../controllers/VisionMission.controller.js";
 
 const router = express.Router();
 
-// Create new section
+// Create a new section (Vision and Mission)
 router.post("/", upload.single("image"), createSection);
 
 // Get all sections
-router.get("/", getAllSections);
+router.get("/", getSection);
 
-// Route for updating section
+// Update Sections by id
 router.put("/:id", upload.single("image"), updateSection);
 
-//Delete section
+// Delete Sections by id
 router.delete("/:id", deleteSection);
 
 export default router;

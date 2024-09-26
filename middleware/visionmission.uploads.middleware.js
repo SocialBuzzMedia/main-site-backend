@@ -7,7 +7,7 @@ const storage = multer.diskStorage({
         cb(null, "uploads/visionMission/");
     },
     filename: (req, file, cb) => {
-        cb(null, `about-section-img_${Date.now()}_${file.originalname}`);
+        cb(null, `vision_mission_${Date.now()}_${file.originalname}`);
     },
 });
 

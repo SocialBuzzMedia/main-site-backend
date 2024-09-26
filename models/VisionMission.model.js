@@ -1,11 +1,10 @@
 import mongoose from "mongoose";
-
 const visionMissionSchema = new mongoose.Schema(
     {
         type: {
             type: String,
             required: true,
-            enum: ["vision", "mission"],
+            // enum: ["vision", "mission"],
         },
         title: {
             type: String,
@@ -17,10 +16,12 @@ const visionMissionSchema = new mongoose.Schema(
         },
         image: {
             type: String,
+            // required: true,
         },
     },
     { timestamps: true }
 );
 
 const VisionMission = mongoose.model("VisionMission", visionMissionSchema);
+
 export default VisionMission;
