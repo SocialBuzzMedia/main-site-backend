@@ -12,6 +12,7 @@ import employeeRoutes from "./routes/Employee.route.js";
 import serviceRoutes from "./routes/Service.route.js";
 import visionMissionRoutes from "./routes/VisionMission.route.js";
 import clientScrollRoutes from "./routes/ClientScroll.route.js";
+import faqRoutes from "./routes/FAQ.route.js";
 
 // Error Handler Routes
 import {
@@ -45,6 +46,7 @@ app.use("/api/employee", employeeRoutes);
 app.use("/api/service", serviceRoutes);
 app.use("/api/vision-mission", visionMissionRoutes);
 app.use("/api/client", clientScrollRoutes);
+app.use("/api/faq", faqRoutes);
 
 // Custom error handlers
 app.use(invalidPathHandler);
