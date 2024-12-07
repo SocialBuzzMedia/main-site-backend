@@ -1,4 +1,4 @@
-/config/dbConnect.js
+# /config/dbConnect.js
 # Logs
 logs
 *.log
